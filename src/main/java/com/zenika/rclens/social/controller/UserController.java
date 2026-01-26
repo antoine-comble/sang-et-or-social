@@ -1,0 +1,40 @@
+package com.zenika.rclens.social.controller;
+
+import com.zenika.rclens.social.core.UserService;
+import com.zenika.rclens.social.model.User;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
+
+@RestController
+@CrossOrigin(origins = "http://localhost:8081", maxAge = 3600)
+public class UserController {
+
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @GetMapping("/user/{id}")
+    public Optional<User> findById(@PathVariable Long id) {
+        return this.userService.findById(id);
+    }
+
+    @GetMapping("/user/search")
+    public Optional<User> findByUserName(@RequestParam(required = false, name = "username") String username, @RequestParam(required = false) String email) {
+        if (StringUtils.hasText(username)) {
+            return this.userService.findByUsername(username);
+        }
+        if (StringUtils.hasText(email)) {
+            return this.userService.findByEmail(email);
+        }
+        return Optional.empty();
+    }
+
+    @PostMapping("/user")
+    public User save(final @RequestBody  User user) {
+        return userService.save(user);
+    }
+}
