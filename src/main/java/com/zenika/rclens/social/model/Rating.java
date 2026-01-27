@@ -3,6 +3,7 @@ package com.zenika.rclens.social.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.io.Serializable;
 
@@ -25,6 +26,8 @@ public class Rating {
     @Column(name = "player_id")
     private Long playerId;
 
+    @Column(name = "rating")
+    @ColumnDefault("0")
     private int rating;
 
     static class PrimaryKey implements Serializable {
