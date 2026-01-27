@@ -4,6 +4,7 @@ import com.zenika.rclens.social.model.Player;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,5 +27,9 @@ public class PlayerService {
 
     public Optional<Player> findById(final Long playerId) {
         return this.playerRepository.findById(playerId);
+    }
+
+    public List<Player> findAll() {
+        return this.playerRepository.findAll();
     }
 }
