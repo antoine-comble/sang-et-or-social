@@ -4,31 +4,32 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Entity
-@Table(
-        name = "PLAYERS_RATINGS",
-        uniqueConstraints =
-        @UniqueConstraint(columnNames = {"id", "match_id", "player_id"})
-)
 @Getter
 @Setter
+@Table(name = "ratings")
+@IdClass(Rating.PrimaryKey.class)
 public class Rating {
+
     @Id
-    @GeneratedValue
-    private Long id;
+    @Column(name = "user_id")
+    private Long userId;
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "user_id")
-    private User user;
+    @Id
+    @Column(name = "match_id")
+    private Long matchId;
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "match_id")
-    private Match match;
-
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "player_id")
-    private Player player;
+    @Id
+    @Column(name = "player_id")
+    private Long playerId;
 
     private int rating;
 
+    static class PrimaryKey implements Serializable {
+        private Long userId;
+        private Long matchId;
+        private Long playerId;
+    }
 }

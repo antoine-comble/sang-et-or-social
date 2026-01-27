@@ -57,11 +57,7 @@ public class RatingTests {
         match = this.matchService.save(match);
 
         // Player
-        player = new Player();
-        player.setFirstName("Eric");
-        player.setLastName("Cantona");
-        player.setNumber(7);
-        player.setPosition("Attaquant");
+        player = new Player(null, "Eric", "Cantona", 7, "Attaquant");
         player = this.playerService.save(player);
 
         // User
@@ -74,9 +70,9 @@ public class RatingTests {
 
         // Rating
         Rating rating = new Rating();
-        rating.setUser(user);
-        rating.setMatch(match);
-        rating.setPlayer(player);
+        rating.setUserId(user.getId());
+        rating.setMatchId(match.getId());
+        rating.setPlayerId(player.getId());
         rating.setRating(6);
         this.ratingService.save(rating);
     }
@@ -92,12 +88,9 @@ public class RatingTests {
         assertThat(expectedMatch).isNotEmpty();
         assertThat(expectedPlayer).isNotEmpty();
 
-        final Optional<Rating> rating = this.ratingService.findByUserAndMatchAndPlayer(expectedUser.orElseGet(null), expectedMatch.orElseGet(null), expectedPlayer.orElseGet(null));
+        final Optional<Rating> rating = this.ratingService.findByUserIdAndMatchIdAndPlayerId(expectedUser.orElseGet(null).getId(), expectedMatch.orElseGet(null).getId(), expectedPlayer.orElseGet(null).getId());
         assertThat(rating).isNotEmpty();
         assertThat(rating.orElseGet(null).getRating()).isEqualTo(6);
-        assertThat(rating.orElseGet(null).getPlayer().getFirstName()).isEqualTo("Eric");
-        assertThat(rating.orElseGet(null).getPlayer().getLastName()).isEqualTo("Cantona");
-        assertThat(rating.orElseGet(null).getPlayer().getNumber()).isEqualTo(7);
     }
 
 

@@ -19,16 +19,16 @@ public class RatingService {
         this.ratingRepository = ratingRepository;
     }
 
-    public Optional<Rating> findByUserAndMatchAndPlayer(final User user, final Match match, final Player player) {
-        return this.ratingRepository.findByUserAndMatchAndPlayer(user, match, player);
+    public Optional<Rating> findByUserIdAndMatchIdAndPlayerId(final Long userId, final Long matchId, final Long playerId) {
+        return this.ratingRepository.findByUserIdAndMatchIdAndPlayerId(userId, matchId, playerId);
     }
 
-    public List<Rating> findByMatch(final Long matchId) {
-        return this.ratingRepository.findByMatch(matchId);
+    public List<Rating> findByMatchId(final Long matchId) {
+        return this.ratingRepository.findByMatchId(matchId);
     }
 
-    public List<Rating> findByPlayer(final Long playerId) {
-        return this.ratingRepository.findByPlayer(playerId);
+    public List<Rating> findByPlayerId(final Long playerId) {
+        return this.ratingRepository.findByPlayerId(playerId);
     }
 
     @Transactional

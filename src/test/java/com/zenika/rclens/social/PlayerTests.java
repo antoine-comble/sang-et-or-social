@@ -3,7 +3,6 @@ package com.zenika.rclens.social;
 
 import com.zenika.rclens.social.core.PlayerService;
 import com.zenika.rclens.social.model.Player;
-import com.zenika.rclens.social.model.User;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,11 +24,7 @@ public class PlayerTests {
 
     @BeforeEach
     public void setUp() {
-        Player player = new Player();
-        player.setFirstName("Eric");
-        player.setLastName("Cantona");
-        player.setNumber(7);
-        player.setPosition("Attaquant");
+        final Player player = new Player(null, "Eric", "Cantona", 7, "Attaquant");
         playerService.save(player);
     }
 

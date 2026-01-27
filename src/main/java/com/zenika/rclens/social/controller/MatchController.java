@@ -21,9 +21,14 @@ public class MatchController {
         this.matchService = matchService;
     }
 
-    @GetMapping("/match/{date}")
+    @GetMapping("/match/date/{date}")
     public Optional<Match> findByDate(@PathVariable final LocalDate date) {
         return this.matchService.findByDate(date);
+    }
+
+    @GetMapping("/match/{id}")
+    public Optional<Match> findById(@PathVariable final Long id) {
+        return this.matchService.findById(id);
     }
 
     @GetMapping("/match/opponent/{opponent}/{home}")

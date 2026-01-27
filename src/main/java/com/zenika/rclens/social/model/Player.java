@@ -26,4 +26,14 @@ public class Player {
     @JoinColumn(name = "rating_ig")
     private List<Rating> ratings;
 
+    public Player(Long id, String firstName, String lastName, int number, String position) {
+        this.number = number;
+        this.position = position;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.id = id;
+    }
+
+    public Player() {
+    }
 }

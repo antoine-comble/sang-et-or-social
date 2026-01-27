@@ -13,9 +13,9 @@ import java.util.Optional;
 @Repository
 public interface RatingRepository extends JpaRepository<Rating, Long> {
 
-    Optional<Rating> findByUserAndMatchAndPlayer(final User user, final Match match, final Player player);
+    Optional<Rating> findByUserIdAndMatchIdAndPlayerId(final Long userId, final Long matchId, final Long playerId);
 
-    List<Rating> findByMatch(final Long matchId);
+    List<Rating> findByMatchId(final Long matchId);
 
-    List<Rating> findByPlayer(final Long playerId);
+    List<Rating> findByPlayerId(final Long playerId);
 }

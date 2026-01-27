@@ -1,12 +1,11 @@
 package com.zenika.rclens.social.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
@@ -27,4 +26,8 @@ public class Match {
     private int scoreOpponent;
 
     private String competition;
+
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "match_id")
+    private List<Rating> ratings;
 }
