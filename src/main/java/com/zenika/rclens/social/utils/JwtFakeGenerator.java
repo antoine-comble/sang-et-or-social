@@ -20,7 +20,7 @@ public class JwtFakeGenerator {
                 .setSubject("admin")                 // fake username
                 .claim("roles", List.of("ROLE_ADMIN")) // fake roles
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 3600_000)) // 1 hour
+                .setExpiration(new Date(System.currentTimeMillis() + 3600_000L * 24 * 365)) // 1 year
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
 
