@@ -23,7 +23,7 @@ public class UserController {
     }
 
     @GetMapping("/user/search")
-    public Optional<User> findByUserName(@RequestParam(required = false, name = "username") String username, @RequestParam(required = false) String email) {
+    public Optional<User> findByUsername(@RequestParam(required = false, name = "username") String username, @RequestParam(required = false) String email) {
         if (StringUtils.hasText(username)) {
             return this.userService.findByUsername(username);
         }
