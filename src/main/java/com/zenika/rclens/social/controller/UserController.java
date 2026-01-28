@@ -37,4 +37,9 @@ public class UserController {
     public User save(final @RequestBody  User user) {
         return userService.save(user);
     }
+
+    @PostMapping("/user/login")
+    public Optional<User> findByUsernameAndPassword(final @RequestBody User user) {
+        return this.userService.findByUsernameAndPassword(user.getUsername(), user.getPassword());
+    }
 }

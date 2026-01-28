@@ -33,4 +33,8 @@ public class UserService {
     public Optional<User> findById(final long userId) {
         return this.userRepository.findById(userId);
     }
+
+    public Optional<User> findByUsernameAndPassword(final String username, final String password) {
+        return this.userRepository.findByUsernameAndPassword(username, password);
+    }
 }
