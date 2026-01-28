@@ -33,7 +33,7 @@ public class UserTests {
     public void setUp() {
         // Roles
         Role roleUser = new Role();
-        roleUser.setName("user");;
+        roleUser.setName("user");
         Role roleAdmin = new Role();
         roleAdmin.setName("admin");
         Role roleModerateur = new Role();

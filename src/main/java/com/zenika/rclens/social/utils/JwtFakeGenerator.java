@@ -10,7 +10,7 @@ import java.util.List;
 
 public class JwtFakeGenerator {
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         // 1. Secret key (must be ≥ 32 bytes for HS256)
         String secret = "my-very-long-super-secure-secret-key-123456";
         Key key = Keys.hmacShaKeyFor(secret.getBytes());
