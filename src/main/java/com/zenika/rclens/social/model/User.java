@@ -6,13 +6,12 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Getter
 @Setter
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue
