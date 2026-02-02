@@ -48,6 +48,7 @@ public class DataInitializer {
         user.setCreationDate(LocalDate.now());
         user.setUsername("toto-le-lensois");
         user.setEmail("toto.lelensois@gmail.com");
+        user.setPassword("password");
         user.setEnabled(true);
         user.setRoles(List.of(roleUser, roleAdmin));
         user = userService.save(user);
