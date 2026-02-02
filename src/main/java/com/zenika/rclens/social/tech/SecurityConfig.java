@@ -1,5 +1,7 @@
 package com.zenika.rclens.social.tech;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -25,6 +27,18 @@ import javax.sql.DataSource;
 @Configuration
 public class SecurityConfig {
 
+    @Value("${spring.datasource.url}")
+    private String dbURL;
+
+    @Value("${spring.datasource.username}")
+    private String dbUserName;
+
+    @Value("${spring.datasource.password}")
+    private String dbPassword;
+
+    @Value("${spring.datasource.driver-class-name}")
+    private String dbDriverClassName;
+
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
     public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter) {
@@ -33,8 +47,16 @@ public class SecurityConfig {
 
     @Bean
     DataSource dataSource() {
-        return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.HSQL)
-                .addScript(JdbcDaoImpl.DEFAULT_USER_SCHEMA_DDL_LOCATION).build();
+//        return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.HSQL)
+//                .addScript(JdbcDaoImpl.DEFAULT_USER_SCHEMA_DDL_LOCATION).build();
+
+        return DataSourceBuilder
+                .create()
+                .url(dbURL)
+                .driverClassName(dbDriverClassName)
+                .username(dbUserName)
+                .password(dbPassword)
+                .build();
     }
 
 
