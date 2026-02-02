@@ -1,5 +1,6 @@
 package com.zenika.rclens.social.model;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,9 +22,11 @@ public class Match {
 
     private boolean home;
 
-    private int scoreLens;
+    @Column(nullable = true)
+    private Integer scoreLens;
 
-    private int scoreOpponent;
+    @Column(nullable = true)
+    private Integer scoreOpponent;
 
     private String competition;
 
