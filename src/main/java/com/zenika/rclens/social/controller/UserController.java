@@ -5,6 +5,7 @@ import com.zenika.rclens.social.model.User;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -41,5 +42,10 @@ public class UserController {
     @PostMapping("/user/login")
     public Optional<User> findByUsernameAndPassword(final @RequestBody User user) {
         return this.userService.findByUsernameAndPassword(user.getUsername(), user.getPassword());
+    }
+
+    @GetMapping("/users/all")
+    public List<User> findAll() {
+        return this.userService.findAll();
     }
 }

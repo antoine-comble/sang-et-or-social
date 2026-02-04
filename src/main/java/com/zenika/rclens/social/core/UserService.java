@@ -5,6 +5,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -36,5 +37,9 @@ public class UserService {
 
     public Optional<User> findByUsernameAndPassword(final String username, final String password) {
         return this.userRepository.findByUsernameAndPassword(username, password);
+    }
+
+    public List<User> findAll() {
+        return this.userRepository.findAll();
     }
 }
