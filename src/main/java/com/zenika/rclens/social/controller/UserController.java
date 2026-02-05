@@ -2,6 +2,9 @@ package com.zenika.rclens.social.controller;
 
 import com.zenika.rclens.social.core.UserService;
 import com.zenika.rclens.social.model.User;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,13 +42,15 @@ public class UserController {
         return userService.save(user);
     }
 
-    @PostMapping("/user/login")
-    public Optional<User> findByUsernameAndPassword(final @RequestBody User user) {
-        return this.userService.findByUsernameAndPassword(user.getUsername(), user.getPassword());
-    }
-
     @GetMapping("/users/all")
     public List<User> findAll() {
         return this.userService.findAll();
+    }
+
+    @GetMapping("/users/me")
+    public ResponseEntity<User> authenticatedUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User currentUser = (User) authentication.getPrincipal();
+        return ResponseEntity.ok(currentUser);
     }
 }
